@@ -1,0 +1,49 @@
+{% extends 'credit_app/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Static Files Test</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>CSS Test</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-primary">This text should be blue if CSS is loaded.</p>
+                    <div class="metric-card good">
+                        <div class="metric-value">95%</div>
+                        <div class="metric-label">CSS Loaded</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>JavaScript Test</h5>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-primary" onclick="testJavaScript()">
+                        Test JavaScript
+                    </button>
+                    <div id="jsResult" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function testJavaScript() {
+    document.getElementById('jsResult').innerHTML = `
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i>
+            JavaScript is working correctly!
+        </div>
+    `;
+}
+</script>
+{% endblock %}

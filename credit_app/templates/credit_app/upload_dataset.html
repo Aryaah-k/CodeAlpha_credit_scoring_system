@@ -1,0 +1,49 @@
+{% extends 'credit_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Upload Dataset - Credit Scoring System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-upload"></i> Upload New Dataset
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-4">
+                    Upload a new CSV dataset for training machine learning models. The dataset should contain credit-related features and a target variable.
+                </p>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-upload"></i> Upload Dataset
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-4">
+                    <h5>Dataset Requirements:</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Format:</strong> CSV file
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Target Column:</strong> Should contain credit approval status (0/1 or approved/rejected)
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Features:</strong> Include relevant credit scoring features like age, income, debt, etc.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

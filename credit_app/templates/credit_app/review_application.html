@@ -1,0 +1,125 @@
+{% extends 'credit_app/base.html' %}
+
+{% block title %}Review Application - Credit Scoring System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">
+            <i class="fas fa-search"></i> Review Application #{{ application.application_id }}
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Application Details -->
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Application Details</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Applicant:</strong> {{ application.applicant.username }}</p>
+                        <p><strong>Age:</strong> {{ application.age }}</p>
+                        <p><strong>Annual Income:</strong> ${{ application.annual_income|floatformat:2 }}</p>
+                        <p><strong>Monthly Debt:</strong> ${{ application.monthly_debt|floatformat:2 }}</p>
+                        <p><strong>Employment Status:</strong> {{ application.employment_status|title }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Education Level:</strong> {{ application.education_level|title }}</p>
+                        <p><strong>Loan Amount:</strong> ${{ application.loan_amount|floatformat:2 }}</p>
+                        <p><strong>Loan Term:</strong> {{ application.loan_term_months }} months</p>
+                        <p><strong>Credit Lines:</strong> {{ application.number_of_credit_lines }}</p>
+                        <p><strong>Submitted:</strong> {{ application.submitted_at|date:"M d, Y H:i" }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credit History -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Credit History</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><strong>Late Payments (30 days):</strong> {{ application.late_payments_30days }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>Late Payments (60 days):</strong> {{ application.late_payments_60days }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>Late Payments (90 days):</strong> {{ application.late_payments_90days }}</p>
+                    </div>
+                </div>
+                {% if application.credit_card_limit %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Credit Card Limit:</strong> ${{ application.credit_card_limit|floatformat:2 }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Credit Card Balance:</strong> ${{ application.credit_card_balance|floatformat:2 }}</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Decision Panel -->
+    <div class="col-lg-4">
+        <!-- AI Prediction -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">AI Prediction</h5>
+            </div>
+            <div class="card-body text-center">
+                <div class="prediction-result {% if application.predicted_status == 'approved' %}approved{% else %}rejected{% endif %}">
+                    <h4>{{ application.predicted_status|title }}</h4>
+                    <p class="mb-1">Credit Rating: {{ application.predicted_credit_rating|title }}</p>
+                    <p class="mb-0">Confidence: {{ application.prediction_score|floatformat:1 }}%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Decision -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Final Decision</h5>
+            </div>
+            <div class="card-body">
+                {% if application.final_decision %}
+                    <div class="alert alert-info">
+                        <strong>Decision:</strong> {{ application.final_decision|title }}<br>
+                        <strong>Reason:</strong> {{ application.decision_reason }}<br>
+                        <small>Decided on: {{ application.decision_date|date:"M d, Y H:i" }}</small>
+                    </div>
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="final_decision" class="form-label">Final Decision</label>
+                            <select name="final_decision" id="final_decision" class="form-select" required>
+                                <option value="">Choose decision...</option>
+                                <option value="approved">Approve</option>
+                                <option value="rejected">Reject</option>
+                                <option value="under_review">Under Review</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="decision_reason" class="form-label">Decision Reason</label>
+                            <textarea name="decision_reason" id="decision_reason" class="form-control" rows="3" placeholder="Explain the decision..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-gavel"></i> Submit Decision
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

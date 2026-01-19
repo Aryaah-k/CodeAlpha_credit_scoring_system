@@ -1,0 +1,66 @@
+{% extends 'credit_app/base.html' %}
+
+{% block title %}Home - Credit Scoring System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <div class="card">
+            <div class="card-body py-5">
+                <h1 class="display-4 mb-4">
+                    <i class="fas fa-credit-card text-primary"></i>
+                    Welcome to Credit Scoring System
+                </h1>
+                <p class="lead mb-4">
+                    AI-powered credit risk assessment using advanced machine learning models.
+                    Get instant credit scoring and personalized recommendations.
+                </p>
+
+                <div class="row mt-5">
+                    <div class="col-md-4">
+                        <div class="metric-card good">
+                            <i class="fas fa-brain fa-2x mb-2"></i>
+                            <h5>AI-Powered</h5>
+                            <p>Advanced ML algorithms for accurate predictions</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card warning">
+                            <i class="fas fa-clock fa-2x mb-2"></i>
+                            <h5>Instant Results</h5>
+                            <p>Get credit scores in seconds</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card danger">
+                            <i class="fas fa-shield-alt fa-2x mb-2"></i>
+                            <h5>Secure & Private</h5>
+                            <p>Your data is protected and confidential</p>
+                        </div>
+                    </div>
+                </div>
+
+                {% if user.is_authenticated %}
+                    <div class="mt-5">
+                        <a href="{% url 'apply_for_credit' %}" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-plus-circle"></i> Apply for Credit
+                        </a>
+                        <a href="{% url 'my_applications' %}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-history"></i> View My Applications
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="mt-5">
+                        <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-user-plus"></i> Get Started
+                        </a>
+                        <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

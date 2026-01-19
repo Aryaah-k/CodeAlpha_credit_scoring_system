@@ -1,0 +1,52 @@
+{% extends 'credit_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Train Model - Credit Scoring System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-graduation-cap"></i> Train Machine Learning Model
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-4">
+                    Train a new machine learning model for credit scoring. Choose your preferred algorithm and optionally perform hyperparameter tuning.
+                </p>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play"></i> Start Training
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-4">
+                    <h5>Available Models:</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Random Forest:</strong> Ensemble method using multiple decision trees
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Logistic Regression:</strong> Statistical method for binary classification
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Support Vector Machine:</strong> Effective for high-dimensional data
+                        </li>
+                        <li class="list-group-item">
+                            <strong>All Models:</strong> Train and compare all available models
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

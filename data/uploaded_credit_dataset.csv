@@ -1,0 +1,21 @@
+age,annual_income,monthly_debt,employment_status,education_level,number_of_credit_lines,loan_amount,loan_term_months,late_payments_30days,late_payments_60days,late_payments_90days,credit_card_limit,credit_card_balance,credit_worthiness,home_ownership,loan_purpose,has_bank_account,number_of_loans,months_employed
+25,45000,800,Employed,High School,2,15000,24,1,0,0,5000,1500,1,Rent,Car Loan,1,1,24
+28,52000,950,Employed,Associate's,3,18000,36,0,0,0,8000,2400,1,Rent,Personal Loan,1,1,36
+32,68000,1200,Employed,Bachelor's,5,25000,48,0,0,0,12000,3600,1,Mortgage,Home Improvement,1,2,60
+35,75000,1500,Employed,Bachelor's,6,30000,60,1,0,0,15000,4500,1,Mortgage,Education,1,2,84
+40,85000,1700,Employed,Master's,7,35000,48,0,0,0,20000,6000,1,Own,Debt Consolidation,1,3,120
+45,95000,1900,Employed,Master's,8,40000,60,0,0,0,25000,7500,1,Own,Business,1,3,156
+50,110000,2200,Self-Employed,PhD,10,50000,72,0,0,0,30000,9000,1,Own,Investment,1,4,180
+22,35000,700,Employed,High School,1,10000,12,2,1,0,3000,900,0,Rent,Electronics,1,1,12
+26,40000,850,Employed,High School,2,12000,24,3,0,0,4000,1600,0,Rent,Medical,1,1,18
+30,48000,1000,Employed,Associate's,3,15000,24,2,1,0,6000,2400,0,Rent,Wedding,1,1,36
+34,58000,1300,Employed,Bachelor's,4,20000,36,1,0,0,8000,3200,0,Mortgage,Car Loan,1,2,48
+38,65000,1600,Employed,Bachelor's,5,25000,48,2,0,0,10000,4000,0,Mortgage,Home Repair,1,2,72
+42,72000,1800,Employed,Master's,6,30000,60,1,1,0,15000,6000,0,Own,Vacation,1,2,96
+47,82000,2000,Self-Employed,Master's,7,35000,48,0,0,0,18000,7200,1,Own,Business,1,3,132
+29,55000,1200,Unemployed,Bachelor's,3,18000,24,4,2,1,7000,3500,0,Rent,Personal,0,1,0
+33,62000,1400,Employed,Bachelor's,5,22000,36,0,0,0,9000,3600,1,Mortgage,Medical,1,2,42
+37,78000,1650,Employed,Master's,6,28000,48,0,0,0,12000,4800,1,Own,Home Renovation,1,2,84
+41,88000,1850,Employed,Master's,7,32000,60,0,0,0,15000,6000,1,Own,Education,1,3,108
+44,92000,1950,Employed,Master's,8,38000,48,1,0,0,18000,7200,1,Mortgage,Car Loan,1,3,132
+48,105000,2100,Self-Employed,PhD,9,45000,72,0,0,0,22000,8800,1,Own,Real Estate,1,3,156
